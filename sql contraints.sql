@@ -264,16 +264,31 @@ select * from students;
 --   Then attempt one with a duplicate name and one with a negative budget, and note what happens.
 
 
-delete from students where student_id = 1;
 
-delete from checkouts where student_id = 1;
+drop table if exists clubs;
+
+create table clubs (
+    club_id int auto_increment primary key,
+    club_name varchar(100) not null unique,
+    advisor_email varchar(100) not null,
+    budget decimal(10,2) default 0.00 check (budget >= 0.00)
+);
+
+insert into clubs (club_name, advisor_email, budget)
+values ('Robotics Club', 'robotics@school.edu', 500.00),
+       ('Art Club', 'art@school.edu', 250.00);
 
 
-delete from students where student_id = 1;
+insert into clubs (club_name, advisor_email, budget)
+values ('Art Club', 'newadvisor@school.edu', 300.00);
 
 
-select * from checkouts;
-select * from students;
+insert into clubs (club_name, advisor_email, budget)
+values ('Music Club', 'music@school.edu', -50.00);
+
+
+select * from clubs;
+
 
 
 -- G2) Create a table named memberships with:
