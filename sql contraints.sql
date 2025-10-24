@@ -244,7 +244,6 @@ delete from students where student_id = 1;
 delete from checkouts where student_id = 1;
 
 
-delete from students where student_id = 1;
 
 
 select * from checkouts;
